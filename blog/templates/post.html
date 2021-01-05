@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %} | {{ title }}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>This is the post route</h2>
+
+    <a href="{% url 'index' %}">Go to homepage</a>
+
+    <p>{{ title }}</p>
+    <p>{{ body }}</p>
+    <p>Created at: {{ date_created }}</p>
+</div>
+{% endblock %}
