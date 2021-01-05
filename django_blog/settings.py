@@ -19,8 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
+from my_secrets import secrets
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'b^0k^pne7rer$!b@nf29vo3isrka#kj3k2dcg@yzot0jzvhnie'
+SECRET_KEY = secrets.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog' # Register our new app called blog
+    'blog', # Register our new app called blog
+    'django_secrets',
 ]
 
 MIDDLEWARE = [
