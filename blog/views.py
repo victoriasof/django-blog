@@ -22,10 +22,12 @@ def index(request):
 
 def post(request):
 
+    today = date.today()
+
     return render(request, 'post.html', {
         'title': 'Title', 
         'body': 'Body',
-        'date_created': date(2020, 1, 5).strftime('%d/%m/%Y')
+        'date_created': today.strftime('%d/%m/%Y')
     })
 
 def add_post(request):
@@ -35,7 +37,8 @@ def add_post(request):
         # Get POST data
         title = request.POST['title']
         content = request.POST['body']
-        #print(title)
-        #print(content)
+
+        print(title)
+        print(content)
 
     return render(request, 'add_post.html')

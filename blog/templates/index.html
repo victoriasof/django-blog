@@ -5,12 +5,13 @@
 <div class="container">
     <h2>This is the index route</h2>
 
-    <p>Random number: {{ random_number }}</p>
+    <img src="{% static 'django-logo-negative.png' %}">
 
-    <img src="{% static 'react.png' %}">
+    <p>Hello, {{ name }}. You are {{ age }}</p>
+
+    <p>Random number: {{ random_number }}</p>
 
     <p class="mt-4"><a href="{% url 'post' %}">Go to post page</a></p>
 
-    <p>Hello, {{ name }}. You are {{ age }}</p>
 </div>
 {% endblock %}
