@@ -4,14 +4,17 @@
 
 {% block body %}
 <div class="container">
-    <h2>This is the post route</h2>
+    <h2> {{ post.title }} </h2>
 
-    <p>{{ title }}</p>
-    <p>{{ body }}</p>
+    <img src="{{ post.img_url }}"/>
 
-    <p>Created at: {{ date_created }}</p>
+    <p> Content: {{ post.content }}</p>
+
+    <p>Created at: {{ post.created_at }}</p>
 
     <a href="{% url 'index' %}">Go to homepage</a>
+
+    
 
 </div>
 {% endblock %}

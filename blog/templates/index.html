@@ -3,15 +3,17 @@
 
 {% block body %}
 <div class="container">
-    <h2>This is the index route</h2>
 
-    <img src="{% static 'django-logo-negative.png' %}">
+    <a href="{% url 'add_post' %}">Go to add post</a>
 
-    <p>Hello, {{ name }}. You are {{ age }}</p>
-
-    <p>Random number: {{ random_number }}</p>
-
-    <p class="mt-4"><a href="{% url 'post' %}">Go to post page</a></p>
+    {% for post in posts %}
+        <div class="post">
+            <img class="post-img" src="{{ post.img_url }}"/>
+            <p class="post-content">Content: {{ post.content }}</p>
+            <p class="post-date">Created on: {{ post.created_at }}</p>
+            <a href="{% url 'post' post.id %}">Read more >></a>
+        </div>
+    {% endfor %}
 
 </div>
 {% endblock %}

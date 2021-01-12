@@ -2,3 +2,18 @@ img {
     max-width: 50%;
     height: auto;
 }
+
+.post {
+    padding: 20px;
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+.post-date {
+    color: lightgray;
+    font-size: 14px;
+}
