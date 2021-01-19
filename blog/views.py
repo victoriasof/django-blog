@@ -1,8 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from datetime import date
 from random import randint
+from django.urls import reverse
+from django.contrib.auth import login, authenticate
+
+from django.contrib.auth.models import User
 
 from django.shortcuts import render
 from .models import Post
@@ -38,6 +42,9 @@ def post(request, post_id):
 
 def add_post(request):
 
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+        
     # Check if user submitted a form with method = POST
     if request.method == 'POST':
         # Get POST data
@@ -49,3 +56,33 @@ def add_post(request):
         newpost.save()
 
     return render(request, 'add_post.html')
+
+
+def login(request):
+    if request.method == "POST":
+
+        # Attempt to sign user in
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+
+        # Check if authentication successful
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))
+        else:
+            return render(request, "login.html")
+    else:
+        return render(request, "login.html")
+
+def register(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        user = User.objects.create_user(username, email, password)
+        user.save()
+        return HttpResponseRedirect(reverse('index'))
+
+    return render(request, 'register.html')
